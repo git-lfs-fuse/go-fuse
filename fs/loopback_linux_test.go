@@ -230,7 +230,7 @@ func TestParallelDiropsHang(t *testing.T) {
 			}
 			_, err = f.Readdirnames(-1)
 			if err != nil {
-				t.Errorf("iteration %d: fd %d: %v", i, f.Fd(), err)
+				t.Errorf("iteration %d: Fd %d: %v", i, f.Fd(), err)
 				return
 			}
 			f.Close()
