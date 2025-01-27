@@ -18,7 +18,7 @@ func setBlocks(out *fuse.Attr) {
 
 // MacOS before High Sierra lacks utimensat() and UTIME_OMIT.
 // We emulate using utimes() and extra Getattr() calls.
-func (f *loopbackFile) utimens(a *time.Time, m *time.Time) syscall.Errno {
+func (f *LoopbackFile) utimens(a *time.Time, m *time.Time) syscall.Errno {
 	var attr fuse.AttrOut
 	if a == nil || m == nil {
 		errno := f.Getattr(context.Background(), &attr)
@@ -27,6 +27,6 @@ func (f *loopbackFile) utimens(a *time.Time, m *time.Time) syscall.Errno {
 		}
 	}
 	tv := utimens.Fill(a, m, &attr.Attr)
-	err := syscall.Futimes(int(f.fd), tv)
+	err := syscall.Futimes(int(f.Fd), tv)
 	return ToErrno(err)
 }

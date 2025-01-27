@@ -166,8 +166,8 @@
 // ensure it is triggered called before initiating the subprocess.
 //
 // 1b. If the subprocess inherits files, the child process uses dup3()
-// to remap file descriptors. If the destination fd happens to be
-// backed by Go-FUSE, the dup3() call will implicitly close the fd,
+// to remap file descriptors. If the destination Fd happens to be
+// backed by Go-FUSE, the dup3() call will implicitly close the Fd,
 // generating a FLUSH operation, eg.
 //
 //	f1, err := os.Open("/fusemnt/file1")
@@ -177,7 +177,7 @@
 //
 //	cmd := exec.Command("/bin/true")
 //	cmd.ExtraFiles = []*os.File{f2}
-//	// f2 (fd 4) is moved to fd 3. Deadlocks with GOMAXPROCS=1.
+//	// f2 (Fd 4) is moved to Fd 3. Deadlocks with GOMAXPROCS=1.
 //	cmd.Start()
 //
 // This deadlock can be avoided by ensuring that file descriptors
