@@ -20,10 +20,13 @@ func (a *Attr) FromStat(s *syscall.Stat_t) {
 	a.Mtimensec = uint32(s.Mtimespec.Nsec)
 	a.Ctime = uint64(s.Ctimespec.Sec)
 	a.Ctimensec = uint32(s.Ctimespec.Nsec)
+	a.Crtime_ = uint64(s.Birthtimespec.Sec)
+	a.Crtimensec_ = uint32(s.Birthtimespec.Nsec)
 	a.Mode = uint32(s.Mode)
 	a.Nlink = uint32(s.Nlink)
 	a.Uid = uint32(s.Uid)
 	a.Gid = uint32(s.Gid)
 	a.Rdev = uint32(s.Rdev)
 	a.Blksize = uint32(s.Blksize)
+	a.Flags_ = uint32(s.Flags)
 }
